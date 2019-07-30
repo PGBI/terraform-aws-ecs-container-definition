@@ -1,0 +1,15 @@
+{
+  "environment": ${env_vars},
+  "essential": ${essential},
+  "image": "${image}",
+  "logConfiguration": {
+    "logDriver": "awslogs",
+    "options": {
+      "awslogs-group": "${log_group_name}",
+      "awslogs-stream-prefix": "${log_stream_prefix}",
+      "awslogs-region": "${region}"
+    }
+  }
+  "name": "${name}",
+  "portMappings": ${port_mappings}
+}
