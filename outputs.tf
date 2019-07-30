@@ -1,13 +1,18 @@
-output "json" {
-  description = "The rendered container definition string."
-  value = templatefile("${path.module}/definition.json.tplm", {
-    env_vars          = jsonencode(var.env_vars)
-    essential         = var.essential
-    image             = var.image
-    name              = var.name
-    port_mappings     = jsonencode(var.port_mappings)
-    log_group_name    = var.log_group_name
-    log_stream_prefix = var.name
-    region            = var.project.region
-  })
+output "definition" {
+  description = "Object representing the container definition."
+  value = {
+    environment: var.env_vars,
+  essential: var.essential,
+  image             = var.image
+  logConfiguration = {
+    logDriver = "awslogs",
+    options = {
+      "awslogs-group": var.log_group_name,
+      "awslogs-stream-prefix": var.name,
+      "awslogs-region": var.project.region
+    }
+  }
+  name = var.name,
+  portMappings = var.port_mappings
+}
 }

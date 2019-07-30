@@ -44,9 +44,9 @@ module "container_definition" {
 }
 
 /**
- * Output the json document representing the container definition.
+ * Output the object representing the container definition.
  */
-output "container_definition_json" {
-  value = module.container_definition.json
+output "container_definition" {
+  value = module.container_definition.definition
 }
 ```
