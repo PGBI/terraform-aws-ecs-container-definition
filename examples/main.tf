@@ -11,7 +11,7 @@ provider "aws" {
  */
 module "project" {
   source  = "PGBI/project/aws"
-  version = "~>0.1.0"
+  version = "~>0.2.0"
 
   name     = "myproject"
   vcs_repo = "github.com/account/project"
@@ -22,7 +22,7 @@ module "project" {
  */
 module "container_definition" {
   source  = "PGBI/ecs-container-definition/aws"
-  version = "~>0.1.0"
+  version = "~>0.2.0"
 
   project = module.project
 
@@ -35,10 +35,10 @@ module "container_definition" {
       value = terraform.workspace
     }
   ]
-  port_mappings = [
+  ports = [
     {
       containerPort = 80
-      hostPort      = 8080
+      protocol      = "tcp"
     }
   ]
 }
