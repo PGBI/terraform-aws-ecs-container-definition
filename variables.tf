@@ -23,10 +23,10 @@ variable "name" {
   description = "Name of the container."
 }
 
-variable "port_mappings" {
+variable "ports" {
   default     = []
-  type        = list(object({ containerPort = number, hostPort = number }))
-  description = "List of port mapping. Each port mapping is an object describing which container port should be mapped to a given host port."
+  type        = list(object({ containerPort = number, protocol = string }))
+  description = "List of ports exposed by the container with their protocol."
 }
 
 variable "log_group_name" {

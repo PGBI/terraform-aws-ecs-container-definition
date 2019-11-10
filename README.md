@@ -35,10 +35,10 @@ module "container_definition" {
       value = terraform.workspace
     }
   ]
-  port_mappings = [
+  ports = [
     {
       containerPort = 80
-      hostPort      = 8080
+      protocol      = "tcp"
     }
   ]
 }
